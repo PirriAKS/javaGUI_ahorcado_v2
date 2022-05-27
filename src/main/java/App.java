@@ -57,10 +57,10 @@ public class App extends JFrame{
                 //si se completan todos los if se gana, si vidas llega a 0 se pierde
                 if(field_j.getText().equals("j")&&field_a_1.getText().equals("a")&&field_v.getText().equals("v")&&field_a_2.getText().equals("a")){
                     JOptionPane.showMessageDialog(container,"GANASTE!");
-                    setVisible(false);
+                    System.exit(0);
                 }else if(vidas==0){
                     JOptionPane.showMessageDialog(container,"PERDISTE!");
-                    setVisible(false);
+                    System.exit(0);
                 }
             }
         });
