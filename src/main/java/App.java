@@ -28,6 +28,10 @@ public class App extends JFrame {
     private JTextField txt_tema;
     private JTextField txt_hint;
     private JLabel label_tema;
+    private JLabel field_7;
+    private JLabel field_8;
+    private JLabel field_9;
+    private JLabel field_10;
     private static int vidas = 6;
     ImageIcon icon_aorc0 = new ImageIcon("src/main/java/imagenes/aorcado0.JPG");
     ImageIcon icon_bombilla = new ImageIcon("src/main/java/imagenes/bombilla.png");
@@ -40,9 +44,7 @@ public class App extends JFrame {
     private static App a = new App();
     private static Objeto o = new Objeto();
     private static ArrayList objetos = new ArrayList<Objeto>();
-    private static String palabra;
     private static char[] letras;
-    private static String[] letras_introducidas;
     private static int cont_vidas;
     private static int cont_add;
     private static String pista;
@@ -70,12 +72,11 @@ public class App extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String valor = txt_user.getText().toLowerCase();
-                if(valor.equals("")){
-                    JOptionPane.showMessageDialog(container,"Introduce letra");
-                }else{
+                if (valor.equals("")) {
+                    JOptionPane.showMessageDialog(container, "Introduce letra");
+                } else {
                     char letra = valor.charAt(0);
                     Compare(letra);
-                    txt_user.setText("");
                     SetIco();
                     CheckLife();
                 }
@@ -88,9 +89,11 @@ public class App extends JFrame {
             }
         });
     }
+
     public static void main(String[] args) {
         Init();
     }
+
     private static void Init() {
         a.setContentPane(a.container);
         a.setVisible(true);
@@ -100,36 +103,39 @@ public class App extends JFrame {
         a.txt_user.setDocument(new LimitJTextField(1));
         a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
     private static boolean Add() {
         boolean flag = false;
-        if (a.txt_palabra.getText().length() > 6) {
-            JOptionPane.showMessageDialog(a.container, "Introduce una palabra de hasta 6 letras");
-            a.txt_palabra.setText("");
-            a.txt_tema.setText("");
-            a.txt_hint.setText("");
+        if (a.txt_palabra.getText().length() > 10) {
+            JOptionPane.showMessageDialog(a.container, "Introduce una palabra de hasta 10 letras");
+            Erase();
         } else if (a.txt_palabra.getText().equals("")) {
             JOptionPane.showMessageDialog(a.container, "Inserta una letra");
-            a.txt_palabra.setText("");
-            a.txt_tema.setText("");
-            a.txt_hint.setText("");
+            Erase();
         } else {
             o = new Objeto(a.txt_palabra.getText().toLowerCase(), a.txt_tema.getText().toLowerCase(), a.txt_hint.getText().toLowerCase());
             objetos.add(o);
-            cont_add = cont_add +1;
-            a.txt_palabra.setText("");
-            a.txt_tema.setText("");
-            a.txt_hint.setText("");
+            cont_add = cont_add + 1;
+            Erase();
         }
-        if (cont_add ==5){
-            flag=true;
+        if (cont_add == 5) {
+            flag = true;
         }
         return flag;
     }
-    private static Objeto Random(){
-        int numeroAleatorio = (int) (Math.random()*4);
+
+    private static void Erase() {
+        a.txt_palabra.setText("");
+        a.txt_tema.setText("");
+        a.txt_hint.setText("");
+    }
+
+    private static Objeto Random() {
+        int numeroAleatorio = (int) (Math.random() * 4);
         Objeto o = (Objeto) objetos.get(numeroAleatorio);
         return o;
     }
+
     private static void Compare(char letra) {
         boolean flag = false;
         int cont_letrarepetida = 0;
@@ -161,6 +167,22 @@ public class App extends JFrame {
                         a.field_6.setText(String.valueOf(letra));
                         cont_letrarepetida = cont_letrarepetida + 1;
                         break;
+                    case 6:
+                        a.field_7.setText(String.valueOf(letra));
+                        cont_letrarepetida = cont_letrarepetida + 1;
+                        break;
+                    case 7:
+                        a.field_8.setText(String.valueOf(letra));
+                        cont_letrarepetida = cont_letrarepetida + 1;
+                        break;
+                    case 8:
+                        a.field_9.setText(String.valueOf(letra));
+                        cont_letrarepetida = cont_letrarepetida + 1;
+                        break;
+                    case 9:
+                        a.field_10.setText(String.valueOf(letra));
+                        cont_letrarepetida = cont_letrarepetida + 1;
+                        break;
                 }
             }
         }
@@ -174,6 +196,14 @@ public class App extends JFrame {
             cont_vidas = cont_vidas + 4;
         } else if (cont_letrarepetida == 6) {
             cont_vidas = cont_vidas + 5;
+        } else if (cont_letrarepetida == 7) {
+            cont_vidas = cont_vidas + 6;
+        } else if (cont_letrarepetida == 8) {
+            cont_vidas = cont_vidas + 7;
+        } else if (cont_letrarepetida == 9) {
+            cont_vidas = cont_vidas + 8;
+        } else if (cont_letrarepetida == 10) {
+            cont_vidas = cont_vidas + 9;
         } else {
             cont_vidas = cont_vidas;
         }
@@ -185,6 +215,7 @@ public class App extends JFrame {
             cont_vidas = cont_vidas + 1;
             vidas = vidas;
         }
+        a.txt_user.setText("");
     }
 
     private static void Extract(Objeto o) {
@@ -194,7 +225,7 @@ public class App extends JFrame {
         }
         letras = letras_array;
         a.label_tema.setText(o.getTema());
-        pista=o.getPista();
+        pista = o.getPista();
     }
 
     private static void Visible() {
@@ -238,6 +269,48 @@ public class App extends JFrame {
                 a.field_4.setText("_");
                 a.field_5.setText("_");
                 a.field_6.setText("_");
+                break;
+            case 7:
+                a.field_1.setText("_");
+                a.field_2.setText("_");
+                a.field_3.setText("_");
+                a.field_4.setText("_");
+                a.field_5.setText("_");
+                a.field_6.setText("_");
+                a.field_7.setText("_");
+                break;
+            case 8:
+                a.field_1.setText("_");
+                a.field_2.setText("_");
+                a.field_3.setText("_");
+                a.field_4.setText("_");
+                a.field_5.setText("_");
+                a.field_6.setText("_");
+                a.field_7.setText("_");
+                a.field_8.setText("_");
+                break;
+            case 9:
+                a.field_1.setText("_");
+                a.field_2.setText("_");
+                a.field_3.setText("_");
+                a.field_4.setText("_");
+                a.field_5.setText("_");
+                a.field_6.setText("_");
+                a.field_7.setText("_");
+                a.field_8.setText("_");
+                a.field_9.setText("_");
+                break;
+            case 10:
+                a.field_1.setText("_");
+                a.field_2.setText("_");
+                a.field_3.setText("_");
+                a.field_4.setText("_");
+                a.field_5.setText("_");
+                a.field_6.setText("_");
+                a.field_7.setText("_");
+                a.field_8.setText("_");
+                a.field_9.setText("_");
+                a.field_10.setText("_");
                 break;
         }
     }
